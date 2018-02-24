@@ -3,7 +3,7 @@
 // | ' <  | _|  | _|   / _ \ 
 // |_|\_\ |_|   |_|   /_/ \_\
 //
-// Copyright (C) Filli-IT (Einzelunternehmen) & Ursin Filli - All Rights Reserverd
+// Copyright (C) 2017 - 2018 Filli IT (Einzelunternehmen) & Ursin Filli - All Rights Reserverd
 // Unauthorized copying of the this file, via any medium is strictly prohibited
 // Proprietary and confidential
 // Written by Ursin Filli <ursin.filli@Filli-IT.ch>
@@ -19,6 +19,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import de.superlandnetwork.API.PlayerAPI.PermEnum;
 import de.superlandnetwork.API.PlayerAPI.PlayerAPI;
 import de.superlandnetwork.API.ServerAPI.ServerAPI;
 import de.superlandnetwork.API.StatsAPI.StatsAPI;
@@ -59,8 +60,7 @@ public class CommandKFFA implements CommandExecutor {
 				sender.sendMessage("§cMaps:");
 				sender.sendMessage("§cKFFA1 - by SuperLandNetwork.de Team");
 				sender.sendMessage("§cKFFA2 - by The_German_F");
-				sender.sendMessage("§cKFFA3 - by SuperHuhnYT");
-				sender.sendMessage("§cKFFA4 - by TexnoGaming & M4_LOL");
+				sender.sendMessage("§cKFFA3 - by TexnoGaming & M4_LOL");
 				sender.sendMessage("§c/forcemap <Map>");
 			}
 			if(args.length == 1) {
@@ -85,20 +85,10 @@ public class CommandKFFA implements CommandExecutor {
 						new ServerAPI(Main.getInstance().server).update();
 					}
 				} else if(args[0].equalsIgnoreCase("KFFA3")) {
-//					if(Main.MapID == 3) {
-//						sender.sendMessage("§cKFFA3 wierd Bereits genutzt!");
-//					} else {
-//						Main.MapID = 3;
-//						Bukkit.broadcastMessage("§cDie Map wurde von §6" + sender.getName() + "§c zu §6KFFA3 gewechselt!");
-//						tp(3);
-//						Main.getInstance().server.setMapID(3);
-//						new ServerAPI(Main.getInstance().server).update();
-//					}
-				} else if(args[0].equalsIgnoreCase("KFFA4")) {
-					if(Main.MapID == 4) {
+					if(Main.MapID == 3) {
 						sender.sendMessage("§7[§3KnockbackFFA§7] §cKFFA4 wierd Bereits genutzt!");
 					} else {
-						Main.MapID = 4;		
+						Main.MapID = 3;
 						Bukkit.broadcastMessage("§7[§3KnockbackFFA§7] §eDie Map wurde von §6" + sender.getName() + "§e zu §6KFFA4 gewechselt!");
 						tp(4);
 						Main.getInstance().server.setMapID(4);
@@ -108,8 +98,7 @@ public class CommandKFFA implements CommandExecutor {
 					sender.sendMessage("§cMaps:");
 					sender.sendMessage("§cKFFA1 - by SuperLandNetwork.de Team");
 					sender.sendMessage("§cKFFA2 - by The_German_F");
-					sender.sendMessage("§cKFFA3 - by SuperHuhnYT");
-					sender.sendMessage("§cKFFA4 - by TexnoGaming & M4_LOL");
+					sender.sendMessage("§cKFFA3 - by TexnoGaming & M4_LOL");
 					sender.sendMessage("§c/forcemap <Map>");
 				}
 			}
@@ -136,42 +125,47 @@ public class CommandKFFA implements CommandExecutor {
 						}
 						return true;
 					} else if (args[0].equalsIgnoreCase("unnick")) {
+						PlayerAPI api = new PlayerAPI(p.getUniqueId());
 						for(Player all : Bukkit.getOnlinePlayers()) {
-							all.hidePlayer(((Player) sender));
+							all.hidePlayer(p);
+							all.sendMessage("§c« " + PermEnum.SPIELER.getTabList() + p.getName() + " §7hat §7den §7Server §7verlassen.");
 						}
-						Main.getInstance().NickInstances.get(((Player) sender).getUniqueId()).unNick();
-						Main.getInstance().NickedPlayers.remove(((Player) sender).getUniqueId());
-						Main.getInstance().NickInstances.remove(((Player) sender).getUniqueId());
+						Main.getInstance().NickInstances.get(p.getUniqueId()).unNick();
+						Main.getInstance().NickedPlayers.remove(p.getUniqueId());
+						Main.getInstance().NickInstances.remove(p.getUniqueId());
 						Bukkit.getScheduler().runTaskLaterAsynchronously(Main.getInstance(), new Runnable() {
 							
 							@Override
 							public void run() {
 								for(Player all : Bukkit.getOnlinePlayers()) {
-									all.showPlayer(((Player) sender));
+									all.showPlayer(p);
+									all.sendMessage("§a» " + api.getTabPrefix() + " §7hat §7den §7Server §7betreten.");
 								}
 							}
 						}, 20L);
 						return true;
 					} else {
-						//TODO: Nick Command  Messages | KFFA - SLN
-						//Help Anzeigen
+						ShowNickHelp(p);
 						return true;
 					}
 				} else {
-					//Help Anzeigen
+					ShowNickHelp(p);
 					return true;
 				}
 			} else {
-				//Keine Rechte
+				sender.sendMessage("§7[§3KnockbackFFA§7] §cDu §chast §chierzu §cKeine §cBerechtigung!");
 				return true;
 			}
 		}
 		return true;
 	}
 
-	/**
-	 * @param i
-	 */
+	
+	private void ShowNickHelp(Player p) {
+		p.sendMessage("§e/nick §elist §7Liste §7mit §7allen §7genickten §7Spielern §7auf §7dem §7Server");
+		p.sendMessage("§e/nick §eunnick §7Nick §7Name §7entfernen");
+	}
+	
 	protected void tp(int i) {
 		for(Player all : Bukkit.getOnlinePlayers()) {
 			all.teleport(Main.Spawn.get(i));

@@ -3,7 +3,7 @@
 // | ' <  | _|  | _|   / _ \ 
 // |_|\_\ |_|   |_|   /_/ \_\
 //
-// Copyright (C) Filli-IT (Einzelunternehmen) & Ursin Filli - All Rights Reserverd
+// Copyright (C) 2017 - 2018 Filli IT (Einzelunternehmen) & Ursin Filli - All Rights Reserverd
 // Unauthorized copying of the this file, via any medium is strictly prohibited
 // Proprietary and confidential
 // Written by Ursin Filli <ursin.filli@Filli-IT.ch>
@@ -75,19 +75,17 @@ public class Main extends JavaPlugin{
 		getCommand("forcemap").setExecutor(CMD);
 		getCommand("nick").setExecutor(CMD);
 		/* KFFA1 */
-		if(Bukkit.getWorld("KFFA1") != null)
-			Bukkit.unloadWorld("KFFA1", true);
-		WorldAPI w = new WorldAPI("KFFA1");
+		if(Bukkit.getWorld("KFFA") != null)
+			Bukkit.unloadWorld("KFFA", true);
+		WorldAPI w = new WorldAPI("KFFA");
 		w.createCleanWorld();
-		Bukkit.getWorld("KFFA1").setAutoSave(false);
-		Bukkit.getWorld("KFFA1").setThundering(false);
-		Bukkit.getWorld("KFFA1").setStorm(false);
-		Bukkit.getWorld("KFFA1").setTime(0L);
-		Bukkit.getWorld("KFFA1").setGameRuleValue("doDaylightCycle", "false");
-		Bukkit.getWorld("KFFA1").setGameRuleValue("announceAdvancements", "false");
-		Bukkit.getWorld("KFFA1").setGameRuleValue("doFireTick", "false");//
-		Bukkit.getWorld("KFFA1").setGameRuleValue("disableElytraMovementCheck", "true");
-		Bukkit.getWorld("KFFA1").setGameRuleValue("doMobSpawning", "false");
+		Bukkit.getWorld("KFFA").setAutoSave(false);
+		Bukkit.getWorld("KFFA").setThundering(false);
+		Bukkit.getWorld("KFFA").setStorm(false);
+		Bukkit.getWorld("KFFA").setTime(0L);
+		Bukkit.getWorld("KFFA").setGameRuleValue("doDaylightCycle", "false");
+		Bukkit.getWorld("KFFA").setGameRuleValue("doFireTick", "false");//
+		Bukkit.getWorld("KFFA").setGameRuleValue("doMobSpawning", "false");
 		server = new Server(1, 1, 1, API.getInstance().ServerID, 1, true, 0, 16);
 		new ServerAPI(server).update();
 	}
@@ -102,15 +100,15 @@ public class Main extends JavaPlugin{
 	}
 	
 	private void loadCords(){
-		Spawn.put(1, new Location(Bukkit.getWorld("KFFA1"), 0D, 96D, 0D));
-		Spawn.put(2, new Location(Bukkit.getWorld("KFFA1"), 1000D, 96D, 1000D));
-		Spawn.put(4, new Location(Bukkit.getWorld("KFFA1"), 2000D, 99D, 2000D));
+		Spawn.put(1, new Location(Bukkit.getWorld("KFFA"), 0D, 96D, 0D));
+		Spawn.put(2, new Location(Bukkit.getWorld("KFFA"), 1000D, 96D, 1000D));
+		Spawn.put(3, new Location(Bukkit.getWorld("KFFA"), 2000D, 99D, 2000D));
 		Ground.put(1, 43D);
 		Ground.put(2, 43D);
-		Ground.put(4, 43D);
+		Ground.put(3, 43D);
 		TopGround.put(1, 119D);
 		TopGround.put(2, 119D);
-		TopGround.put(4, 119D);
+		TopGround.put(3, 119D);
 	}
 	
 	public static void SetScorbord(Player p){
@@ -151,8 +149,6 @@ public class Main extends JavaPlugin{
 			MapName = "KFFA2";
 		if(MapID == 3)
 			MapName = "KFFA3";
-		if(MapID == 4)
-			MapName = "KFFA4";
 		score.getScore("§b" + MapName).setScore(1);
 		p.setScoreboard(bord);
 	}

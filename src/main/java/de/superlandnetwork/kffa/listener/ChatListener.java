@@ -3,7 +3,7 @@
 // | ' <  | _|  | _|   / _ \ 
 // |_|\_\ |_|   |_|   /_/ \_\
 //
-// Copyright (C) Filli-IT (Einzelunternehmen) & Ursin Filli - All Rights Reserverd
+// Copyright (C) 2017 - 2018 Filli IT (Einzelunternehmen) & Ursin Filli - All Rights Reserverd
 // Unauthorized copying of the this file, via any medium is strictly prohibited
 // Proprietary and confidential
 // Written by Ursin Filli <ursin.filli@Filli-IT.ch>

@@ -3,7 +3,7 @@
 // | ' <  | _|  | _|   / _ \ 
 // |_|\_\ |_|   |_|   /_/ \_\
 //
-// Copyright (C) Filli-IT (Einzelunternehmen) & Ursin Filli - All Rights Reserverd
+// Copyright (C) 2017 - 2018 Filli IT (Einzelunternehmen) & Ursin Filli - All Rights Reserverd
 // Unauthorized copying of the this file, via any medium is strictly prohibited
 // Proprietary and confidential
 // Written by Ursin Filli <ursin.filli@Filli-IT.ch>
@@ -12,7 +12,7 @@ package de.superlandnetwork.kffa.listener;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,8 +24,8 @@ import de.superlandnetwork.API.PlayerAPI.PlayerAPI;
 import de.superlandnetwork.API.StatsAPI.StatsAPI;
 import de.superlandnetwork.API.StatsAPI.StatsEnum;
 import de.superlandnetwork.kffa.Main;
-import net.minecraft.server.v1_12_R1.PacketPlayInClientCommand;
-import net.minecraft.server.v1_12_R1.PacketPlayInClientCommand.EnumClientCommand;
+import net.minecraft.server.v1_8_R3.PacketPlayInClientCommand;
+import net.minecraft.server.v1_8_R3.PacketPlayInClientCommand.EnumClientCommand;
 
 public class DeathListener implements Listener {
 
@@ -147,7 +147,7 @@ public class DeathListener implements Listener {
 					Bukkit.broadcastMessage("§7[§3KnockbackFFA§7] " + name + " §7Hat §7eine §b70er §7Killstreak");
 				}
 				//-----------------
-				k.playSound(k.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10F, 1F);
+				k.playSound(k.getLocation(), Sound.LEVEL_UP, 10F, 1F);
 			}
 		}
 		JoinListener.setItems(p);

@@ -3,7 +3,7 @@
 // | ' <  | _|  | _|   / _ \ 
 // |_|\_\ |_|   |_|   /_/ \_\
 //
-// Copyright (C) Filli-IT (Einzelunternehmen) & Ursin Filli - All Rights Reserverd
+// Copyright (C) 2017 - 2018 Filli IT (Einzelunternehmen) & Ursin Filli - All Rights Reserverd
 // Unauthorized copying of the this file, via any medium is strictly prohibited
 // Proprietary and confidential
 // Written by Ursin Filli <ursin.filli@Filli-IT.ch>
@@ -16,9 +16,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
-import org.bukkit.scoreboard.Team.Option;
-import org.bukkit.scoreboard.Team.OptionStatus;
-
 import de.superlandnetwork.API.PlayerAPI.PermEnum;
 import de.superlandnetwork.API.PlayerAPI.PlayerAPI;
 import de.superlandnetwork.API.Utils.ScorbordManager;
@@ -37,8 +34,8 @@ public class Methods {
 		bord.registerNewTeam("009YouTube").setPrefix(PermEnum.YOUTUBER.getTabList());
 		bord.registerNewTeam("0008Builder").setPrefix(PermEnum.BUILDER.getTabList());
 		bord.registerNewTeam("0008Builderin").setPrefix(PermEnum.BUILDERIN.getTabList());
-//		bord.registerNewTeam("0007HeadBuilder").setPrefix(PermEnum.HEADBUILDER.getTabList());
-//		bord.registerNewTeam("0007HeadBuildin").setPrefix(PermEnum.HEADBUILDERIN.getTabList());
+		bord.registerNewTeam("0008Helfer").setPrefix(PermEnum.HELFER.getTabList());
+		bord.registerNewTeam("0008Helferin").setPrefix(PermEnum.HELFERIN.getTabList());
 		bord.registerNewTeam("0006Supporter").setPrefix(PermEnum.SUPPORTER.getTabList());
 		bord.registerNewTeam("0006Supporterin").setPrefix(PermEnum.SUPPORTERIN.getTabList());
 		bord.registerNewTeam("0005Moderator").setPrefix(PermEnum.MODERATOR.getTabList());
@@ -49,17 +46,10 @@ public class Methods {
 		bord.registerNewTeam("0003Devloperin").setPrefix(PermEnum.DEVELOPERIN.getTabList());
 		bord.registerNewTeam("0002Admin").setPrefix(PermEnum.ADMINISTRATOR.getTabList());
 		bord.registerNewTeam("0002Adminin").setPrefix(PermEnum.ADMINISTRATORIN.getTabList());
-		AntiCollision(p);
-		//TODO Update
+		bord.registerNewTeam("0001Owner").setPrefix(PermEnum.OWNER.getTabList());
+		bord.registerNewTeam("0001Ownerin").setPrefix(PermEnum.OWNERIN.getTabList());
 	}
-		 
-	private static void AntiCollision(Player p) {
-		Scoreboard bord = ScorbordManager.getScorebord(p);
-		for(Team t : bord.getTeams()) {
-			t.setOption(Option.COLLISION_RULE, OptionStatus.NEVER);
-		}
-	}
-	 
+	
 	@SuppressWarnings("deprecation")
 	public static void setPrefix(Player player) {
 		Scoreboard bord = player.getScoreboard();
@@ -77,10 +67,10 @@ public class Methods {
 				team = "0008Builder";
 			} else if(api.IsPlayerInGroup(PermEnum.BUILDERIN.getId())) {
 				team = "0008Builderin";
-//			} else if(api.IsPlayerInGroup(PermEnum.HEADBUILDER.getId())) {
-//				team = "0007HeadBuilder";
-//			} else if(api.IsPlayerInGroup(PermEnum.HEADBUILDERIN.getId())) {
-//				team = "0007HeadBuildin";
+			} else if(api.IsPlayerInGroup(PermEnum.HELFER.getId())) {
+				team = "0008Helfer";
+			} else if(api.IsPlayerInGroup(PermEnum.HELFERIN.getId())) {
+				team = "0008Helferin";
 			} else if(api.IsPlayerInGroup(PermEnum.SUPPORTER.getId())) {
 				team = "0006Supporter";
 			} else if(api.IsPlayerInGroup(PermEnum.SUPPORTERIN.getId())) {
@@ -101,13 +91,16 @@ public class Methods {
 				team = "0002Admin";
 			} else if(api.IsPlayerInGroup(PermEnum.ADMINISTRATORIN.getId())) {
 				team = "0002Adminin";
+			} else if(api.IsPlayerInGroup(PermEnum.OWNER.getId())) {
+				team = "0001Owner";
+			} else if(api.IsPlayerInGroup(PermEnum.OWNERIN.getId())) {
+				team = "0001Ownerin";
 			}
 			if(Main.getInstance().NickedPlayers.contains(UUID))
 				team = "0012Spieler";
 			bord.getTeam(team).addPlayer(all);
 		}
 		player.setScoreboard(bord);
-		//TODO UPDATE
 	}
-		
+	
 }
