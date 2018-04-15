@@ -81,7 +81,7 @@ public class JoinListener implements Listener{
 		}
 		PlayerAPI api = new PlayerAPI(p.getUniqueId());
 		if(Main.getInstance().NickedPlayers.contains(p.getUniqueId()))
-			e.setJoinMessage("§a» " + PermEnum.SPIELER.getTabList() + p.getName() + " §7hat §7den §7Server §7betreten.");
+			e.setJoinMessage("§a» " + PermEnum.PREMIUM.getTabList() + p.getName() + " §7hat §7den §7Server §7betreten.");
 		else
 			e.setJoinMessage("§a» " + api.getTabPrefix() + " §7hat §7den §7Server §7betreten.");
 		p.teleport(Main.Spawn.get(Main.MapID));
@@ -108,7 +108,7 @@ public class JoinListener implements Listener{
 		Player p = e.getPlayer();
 		PlayerAPI api = new PlayerAPI(p.getUniqueId());
 		if(Main.getInstance().NickedPlayers.contains(p.getUniqueId()))
-			e.setQuitMessage("§c« " + PermEnum.SPIELER.getTabList() + p.getName() + " §7hat §7den §7Server §7verlassen.");
+			e.setQuitMessage("§c« " + PermEnum.PREMIUM.getTabList() + p.getName() + " §7hat §7den §7Server §7verlassen.");
 		else
 			e.setQuitMessage("§c« " + api.getTabPrefix() + " §7hat §7den §7Server §7verlassen.");
 		Main.Deaths.remove(p);

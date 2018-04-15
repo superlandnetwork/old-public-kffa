@@ -97,7 +97,7 @@ public class Methods {
 				team = "0001Ownerin";
 			}
 			if(Main.getInstance().NickedPlayers.contains(UUID))
-				team = "0012Spieler";
+				team = "0011Premium";
 			bord.getTeam(team).addPlayer(all);
 		}
 		player.setScoreboard(bord);

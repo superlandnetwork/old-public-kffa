@@ -31,7 +31,7 @@ public class ChatListener implements Listener {
 		e.setMessage(ChatColor.translateAlternateColorCodes('&', e.getMessage()));
 		PlayerAPI api = new PlayerAPI(UUID);
 		if(Main.getInstance().NickedPlayers.contains(p.getUniqueId())) {
-			e.setFormat(PermEnum.SPIELER.getPrefix() + p.getName() + "§f" + " §7: §f" + e.getMessage());
+			e.setFormat(PermEnum.PREMIUM.getPrefix() + p.getName() + "§f" + " §7: §f" + e.getMessage());
 		} else {
 			e.setFormat(api.getChatPrefix() + " §7: §f" + e.getMessage());
 		}

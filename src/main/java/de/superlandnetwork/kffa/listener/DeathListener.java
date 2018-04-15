@@ -73,12 +73,12 @@ public class DeathListener implements Listener {
 				PlayerAPI pAPI = new PlayerAPI(p.getUniqueId());
 				PlayerAPI kAPI = new PlayerAPI(k.getUniqueId());
 				if(Main.getInstance().NickedPlayers.contains(k.getUniqueId())) {
-					p.sendMessage("§7[§3KnockbackFFA§7] §7Du §7wurdest §7von " + PermEnum.SPIELER.getTabList() + k.getName() + " §7getötet.");
+					p.sendMessage("§7[§3KnockbackFFA§7] §7Du §7wurdest §7von " + PermEnum.PREMIUM.getTabList() + k.getName() + " §7getötet.");
 				} else {
 					p.sendMessage("§7[§3KnockbackFFA§7] §7Du §7wurdest §7von " + kAPI.getTabPrefix() + " §7getötet.");
 				}
 				if(Main.getInstance().NickedPlayers.contains(p.getUniqueId())) {
-					k.sendMessage("§7[§3KnockbackFFA§7] §7Du §7hast " + PermEnum.SPIELER.getTabList() + p.getName() + " §7getötet.");
+					k.sendMessage("§7[§3KnockbackFFA§7] §7Du §7hast " + PermEnum.PREMIUM.getTabList() + p.getName() + " §7getötet.");
 				} else {
 					k.sendMessage("§7[§3KnockbackFFA§7] §7Du §7hast " + pAPI.getTabPrefix() + " §7getötet.");
 				}
@@ -100,7 +100,7 @@ public class DeathListener implements Listener {
 				//-----------------
 				String name = k.getName();
 				if(Main.getInstance().NickedPlayers.contains(p.getUniqueId())) {
-					name = PermEnum.SPIELER.getTabList() + p.getName();
+					name = PermEnum.PREMIUM.getTabList() + p.getName();
 				} else {
 					name = kAPI.getTabPrefix();
 				}
